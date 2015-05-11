@@ -1,0 +1,13 @@
+<% provide(:title, @user.username + ' movies') %>
+
+<% if !@movies.empty? %>
+	<h3>Sort by | 
+	<%= link_to "Date", :sort => "created_at" %>
+	<%= link_to "Likes", :sort => "likes_sum" %>
+	<%= link_to "Hates", :sort => "hates_sum" %>
+	</h3>	
+  <%= render @movies %>
+	
+<% else %>
+	No movies from user <%= @user.username %>
+<% end %>

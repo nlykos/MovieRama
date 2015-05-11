@@ -1,0 +1,30 @@
+<div>
+	<br />
+<dt>Title: <%= movie.title %></dt>
+<dd>Description: <%= movie.description %></dd>
+<dd>By user: <%= link_to movie.user.username, user_movies_user_path(movie.user) %></dd>
+<dd>Likes: <%= movie.likes_sum %> | Hates: <%= movie.hates_sum %>
+<% if logged_in? %>
+	<% if current_user.likes_movie?(movie.id) %>
+		
+			 | You like this movie. 
+			<%= link_to 'Unlike', like_url(movie_id:  movie.id, id: current_user.id), method: :delete, class: "btn btn-primary" %>
+			or 
+			<%= link_to 'Hate', hates_url(:hate => { movie_id:  movie.id, user_id: current_user.id}, status: 'voted' ), method: :post, class: "btn btn-primary" %>
+			
+	<% elsif current_user.hates_movie?(movie.id) %>
+		
+			 | You hate this movie. 
+			<%= link_to 'Unhate', hate_url(movie_id:  movie.id, id: current_user.id), method: :delete, class: "btn btn-primary" %>
+			or 
+			<%= link_to 'Like', likes_url(:like => { movie_id:  movie.id, user_id: current_user.id}, status: 'voted' ), method: :post, class: "btn btn-primary" %>
+		
+	<% elsif current_user.id != movie.user_id %>
+			
+			 | <%= link_to 'Like', likes_url(:like => { movie_id:  movie.id, user_id: current_user.id}, status: 'none' ), method: :post, class: "btn btn-primary" %>
+			<%= link_to 'Hate', hates_url(:hate => { movie_id:  movie.id, user_id: current_user.id}, status: 'none' ), method: :post, class: "btn btn-primary" %>
+		</dd>
+	<% end %>
+	<% store_location %>
+<% end %>
+</div>

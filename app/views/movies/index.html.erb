@@ -1,0 +1,15 @@
+<% provide(:title, 'All Movies') %>
+<% if logged_in? %>
+<%= link_to 'New Movie', new_movie_path, class: "btn btn-primary" %>
+<% end %>
+<div>
+	<h3>
+		Sort by | 
+		<%= link_to "Date", :sort => "created_at" %>
+		<%= link_to "Likes", :sort => "likes_sum" %>
+		<%= link_to "Hates", :sort => "hates_sum" %>
+	</h3>
+</div>
+
+<%= render @movies %>
+<br />

@@ -1,0 +1,26 @@
+<% provide(:title, 'Movie ' + @movie.title) %>
+
+<p>
+  <strong>Title:</strong>
+  <%= @movie.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @movie.description %>
+</p>
+
+<p>
+  <strong>Likes:</strong>
+  <%= @movie.likes_sum %>
+</p>
+
+<p>
+  <strong>Hates:</strong>
+  <%= @movie.hates_sum %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @movie.user_id %>
+</p>
